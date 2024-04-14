@@ -1,5 +1,3 @@
 package app.betterhm.backend.model;
 
-public record CalendarElement(String ID, String Name, String URL) {
-
-}
+public record CalendarElement(String ID, String Name, String URL, String SourceURL) {}
