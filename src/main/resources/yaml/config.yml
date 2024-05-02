@@ -1,0 +1,9 @@
+Calendars:
+  - ID: "1776ed34-fccf-4845-aa1b-5c6821649804"
+    Name: "HM Fristen & Termine"
+    Url: "https://api.betterhm.app/staic/calendars/1776ed34-fccf-4845-aa1b-5c6821649804.ics"
+    SourceURL: "https://calendar.google.com/calendar/ical/qp1nk83jvkfm7a3m9goqhr5oo4%40group.calendar.google.com/public/basic.ics"
+  - ID: "870baf08-b182-4451-a1f5-657b8ef02852"
+    Name: "Gesetzliche Feiertage"
+    Url: "https://api.betterhm.app/staic/calendars/870baf08-b182-4451-a1f5-657b8ef02852.ics"
+    SourceURL: "https://www.thunderbird.net/media/caldata/GermanHolidays.ics"
