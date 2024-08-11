@@ -1,7 +1,7 @@
-package app.betterhm.backend.controller;
+package app.betterhm.backend.v1.controller;
 
-import app.betterhm.backend.models.CalendarElement;
-import app.betterhm.backend.services.CalendarService;
+import app.betterhm.backend.v1.models.CalendarElement;
+import app.betterhm.backend.v1.services.CalendarService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
  * This class is responsible for handling the calendar requests
  */
 @RestController
-@RequestMapping("/calendar")
+@RequestMapping("/v1/calendar")
 public class CalendarController {
     private final CalendarService calendarServiceObject;
 
@@ -25,7 +25,7 @@ public class CalendarController {
      * @return Json list of calendar elements
      */
     @GetMapping()
-    public List<CalendarElement> returnCalendar() {
+    public List<CalendarElement> getCalendarList() {
         return this.calendarServiceObject.getCalendarElementsList();
     }
 

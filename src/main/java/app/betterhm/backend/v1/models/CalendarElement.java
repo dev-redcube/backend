@@ -1,4 +1,4 @@
-package app.betterhm.backend.models;
+package app.betterhm.backend.v1.models;
 
 import java.util.Optional;
 

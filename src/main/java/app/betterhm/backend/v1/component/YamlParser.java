@@ -1,5 +1,5 @@
-package app.betterhm.backend.component;
-import app.betterhm.backend.models.YamlRecord;
+package app.betterhm.backend.v1.component;
+import app.betterhm.backend.v1.models.YamlRecord;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.springframework.stereotype.Repository;
@@ -18,6 +18,7 @@ public class YamlParser {
     /**
      * Constructor that reads the yaml file and parses it
      * @throws IOException if error with reading/parsing the file
+     * @throws FileNotFoundException if file not found
      */
     public YamlParser() throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
@@ -27,7 +28,7 @@ public class YamlParser {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Yaml file not found.");
         } catch (IOException e) {
-            throw new IOException(e);
+            throw new IOException("Error with reading/parsing the yaml file.");
         }
     }
 

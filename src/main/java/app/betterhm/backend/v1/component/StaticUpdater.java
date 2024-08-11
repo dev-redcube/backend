@@ -1,6 +1,6 @@
-package app.betterhm.backend.component;
+package app.betterhm.backend.v1.component;
 
-import app.betterhm.backend.models.YamlRecord;
+import app.betterhm.backend.v1.models.YamlRecord;
 import jakarta.annotation.PostConstruct;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -23,13 +23,14 @@ public class StaticUpdater {
     public StaticUpdater(YamlParser yamlParser) {
         this.yaml = yamlParser.getParsedYaml();
     }
+    private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(StaticUpdater.class);
 
     /**
      * Downloads the calendar files from the source URLs and saves them in the static folder
      */
     @PostConstruct
     @Scheduled(cron = "0 4 * * *")
-    private void updateCalendar(){
+    public void updateCalendar(){
         yaml.Calendars().stream().filter(element -> element.SourceURL().isPresent()).forEach(element ->
                 downloadFile(element.SourceURL().get(), "src/main/resources/static/calendar/" + element.ID() + ".ics"));
     }
@@ -49,7 +50,7 @@ public class StaticUpdater {
         try (InputStream in = website.openStream()) {
             Files.copy(in, Paths.get(path), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to download file", e);
+            logger.error("Failed to download file", e);
         }
     }
 }

@@ -1,3 +1,4 @@
+
 Calendars:
   - ID: "1776ed34-fccf-4845-aa1b-5c6821649804"
     Name: "HM Fristen & Termine"
@@ -7,3 +8,55 @@ Calendars:
     Name: "Gesetzliche Feiertage"
     Url: "https://api.betterhm.app/staic/calendars/870baf08-b182-4451-a1f5-657b8ef02852.ics"
     SourceURL: "https://www.thunderbird.net/media/caldata/GermanHolidays.ics"
+CapacityElements:
+  - enum_name: "STUCAFE_KARLSTR"
+    lrz_subdistrict_id: "rf"
+    static_max_clients: 75
+    specific_access_points:
+      - apa06-4rf
+  - enum_name: "MENSA_LOTHSTR"
+    lrz_subdistrict_id: "rh"
+    static_max_clients: 280
+    specific_access_points:
+      - apa02-1rh
+      - apa03-1rh
+      - apa06-0rh
+      - apa05-0rh
+  - enum_name: "STUCAFE_LOTHSTR"
+    lrz_subdistrict_id: "rr"
+    static_max_clients: 85
+    specific_access_points:
+      - apa36-0rr
+  - enum_name: "MENSA_PASING"
+    lrz_subdistrict_id: "rl"
+    static_max_clients: 130
+    specific_access_points:
+      - apa15-0rl
+      - apa18-0rl
+  - enum_name: "STUCAFE_PASING"
+    lrz_subdistrict_id: "rl"
+    static_max_clients: 81
+    specific_access_points:
+      - apa16-1rl
+  - enum_name: "BIBLIOTHEK_L_BAU"
+    lrz_subdistrict_id: "rl"
+    static_max_clients: 180
+    specific_access_points:
+      - apa14-1rl
+      - apa15-1rl
+  - enum_name: "BIBLIOTHEK_I_BAU"
+    lrz_subdistrict_id: "ri"
+    static_max_clients: 250
+    specific_access_points:
+  - enum_name: "BIBLIOTHEK_H_BAU"
+    lrz_subdistrict_id: "rh"
+    static_max_clients: 380
+    specific_access_points:
+      - apa02-4rh
+      - apa04-3rh
+      - apa05-2rh
+      - apa05-3rh
+      - apa06-3rh
+      - apa07-2rh
+LrzUrl: "http://graphite-kom.srv.lrz.de/render/?from=-10minute&target=ap.ap*-?{{subdistrict_id}}*.ssid.*&format=json"
+

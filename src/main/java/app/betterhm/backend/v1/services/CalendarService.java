@@ -1,6 +1,6 @@
-package app.betterhm.backend.services;
-import app.betterhm.backend.component.YamlParser;
-import app.betterhm.backend.models.CalendarElement;
+package app.betterhm.backend.v1.services;
+import app.betterhm.backend.v1.component.YamlParser;
+import app.betterhm.backend.v1.models.CalendarElement;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
