@@ -29,10 +29,11 @@ public class StaticUpdater {
      * Downloads the calendar files from the source URLs and saves them in the static folder
      */
     @PostConstruct
-    @Scheduled(cron = "0 4 * * *")
+    @Scheduled(cron = "0 0 4 * * *")
     public void updateCalendar(){
         yaml.Calendars().stream().filter(element -> element.SourceURL().isPresent()).forEach(element ->
                 downloadFile(element.SourceURL().get(), "src/main/resources/static/calendar/" + element.ID() + ".ics"));
+        logger.info("Calendar files updated");
     }
 
     /**
@@ -42,9 +43,11 @@ public class StaticUpdater {
      */
     private void downloadFile(String url, String path) {
         URL website;
+
         try {
             website = new URL(url);
         } catch (MalformedURLException e) {
+            logger.error("Invalid URL", e);
             throw new RuntimeException("Invalid URL", e);
         }
         try (InputStream in = website.openStream()) {
