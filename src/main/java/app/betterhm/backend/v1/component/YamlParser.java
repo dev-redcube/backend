@@ -24,7 +24,8 @@ public class YamlParser {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
         try {
-            parsedYaml = mapper.readValue(new File("src/main/resources/yaml/config.yml"), YamlRecord.class);
+            String pathname = "./resources/yaml/config.yml";
+            parsedYaml = mapper.readValue(new File(pathname), YamlRecord.class);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Yaml file not found.");
         } catch (IOException e) {

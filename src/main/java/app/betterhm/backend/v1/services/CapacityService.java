@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.regex.PatternSyntaxException;
 
 @Controller
 public class CapacityService {
-    private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CalendarService.class);
+    private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CapacityService.class);
     private final List<CapacityConfigRecord> capacityConfigRecordList;
     private List<CapacityApiElement> capacityApiElementList;
     private final String lrzApiUrl;
@@ -75,7 +76,7 @@ public class CapacityService {
         //adds all the clients of the filtered APs to the client count & set timestamp
         if (!filteredApList.isEmpty()) {
             clients = filteredApList.stream().mapToInt(element -> element.getConnectedDevices(1)).sum();
-            timestamp = filteredApList.get(0).getDatapointTimestamp(1);
+            timestamp = filteredApList.getFirst().getDatapointTimestamp(1);
         }else{
             timestamp = Instant.now();
             clients = 0;
@@ -110,7 +111,7 @@ public class CapacityService {
         URL apiUrl;
         try {
             String[] splitUrl = lrzApiUrl.split("\\{\\{subdistrict_id}}", 2); //builds the URL with the sub-district id
-            apiUrl = new URL(splitUrl[0] + capacityConfigRecord.lrz_subdistrict_id() + splitUrl[1]);
+            apiUrl = URI.create(splitUrl[0] + capacityConfigRecord.lrz_subdistrict_id() + splitUrl[1]).toURL();
         } catch (PatternSyntaxException e) {
             logger.error("Could not Split LRZ Api Url Provided by the config", e);
             throw new PatternSyntaxException("Could not Split LRZ Api Url Provided by the config", lrzApiUrl, -1);
