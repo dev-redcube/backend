@@ -1,0 +1,9 @@
+services:
+  betterHM-backend:
+    image: ghcr.io/dev-redcube/backend
+    container_name: hm-dates-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./resources:/resources

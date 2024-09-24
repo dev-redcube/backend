@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,7 +33,7 @@ public class StaticUpdater {
     @Scheduled(cron = "0 0 4 * * *")
     public void updateCalendar(){
         yaml.Calendars().stream().filter(element -> element.SourceURL().isPresent()).forEach(element ->
-                downloadFile(element.SourceURL().get(), "src/main/resources/static/calendar/" + element.ID() + ".ics"));
+                downloadFile(element.SourceURL().get(), "resources/static/calendar/" + element.ID() + ".ics"));
         logger.info("Calendar files updated");
     }
 
@@ -45,7 +46,7 @@ public class StaticUpdater {
         URL website;
 
         try {
-            website = new URL(url);
+            website = URI.create(url).toURL();
         } catch (MalformedURLException e) {
             logger.error("Invalid URL", e);
             throw new RuntimeException("Invalid URL", e);
