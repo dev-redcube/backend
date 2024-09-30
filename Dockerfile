@@ -1,10 +1,12 @@
 FROM amazoncorretto:21-alpine AS builder
-ADD ./ /.
+ADD ./ /build
+WORKDIR /build
 CMD ./gradlew build -x test
 
 FROM amazoncorretto:21-alpine
-COPY --from=builder /build/libs/*.jar /
-COPY --from=builder /resources /resources
+WORKDIR /app
+COPY --from=builder /build/build/libs/*.jar /app
+COPY --from=builder /build/resources /app/resources
 EXPOSE 8080/tcp
-VOLUME /resources
-ENTRYPOINT java -jar /backend.jar
+VOLUME /app/resources
+ENTRYPOINT java -jar /app/backend.jar
