@@ -8,7 +8,7 @@ public record LrzJsonAccesspoint(String target, ArrayList<ArrayList<Integer>> da
      * @return Connected devices from index datapoint
      */
     public Integer getConnectedDevices(int index) {
-        Integer returnvalue = datapoints.get(index).get(0);
+        Integer returnvalue = datapoints.get(index).getFirst();
         return returnvalue == null ? 0: returnvalue;
     }
     /**

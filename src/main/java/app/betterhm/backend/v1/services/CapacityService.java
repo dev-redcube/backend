@@ -55,9 +55,9 @@ public class CapacityService {
     }
 
     /**
-     * Method to update the Capacity Elements every 5 Minutes
+     * Method to update the Capacity Elements every 5 Minutes (in the 59th second of the 5th minute)
      */
-    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 2-59/5 * ? * *")
     public void updateCapacity(){
         List<CapacityApiElement> newElementList = new ArrayList<>();
         capacityConfigRecordList.forEach(Element -> newElementList.add(getUpdatedCapacityElement(Element)));
@@ -83,10 +83,10 @@ public class CapacityService {
         }
 
 
-        int capacityLevelInPercent = (clients / capacityConfigRecord.static_max_clients());
+        double capacityLevelInPercent = ((double) (clients * 100 / capacityConfigRecord.static_max_clients())/100); // calculates the capacity level in percent with 2 decimal places
         //filter out everything over "100%"
-        if(capacityLevelInPercent > 1){
-            capacityLevelInPercent = 1;
+        if(capacityLevelInPercent > 1.0){
+            capacityLevelInPercent = 1.0;
         }
 
         return new CapacityApiElement(capacityConfigRecord.enum_name(), clients, capacityLevelInPercent, timestamp.toString());
