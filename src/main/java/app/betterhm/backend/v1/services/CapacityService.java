@@ -55,9 +55,9 @@ public class CapacityService {
     }
 
     /**
-     * Method to update the Capacity Elements every 5 Minutes (in the 59th second of the 5th minute)
+     * Method to update the Capacity Elements every 5 Minutes (from 3 to 59 minutes)
      */
-    @Scheduled(cron = "0 2-59/5 * ? * *")
+    @Scheduled(cron = "0 3-59/5 * ? * *")
     public void updateCapacity(){
         List<CapacityApiElement> newElementList = new ArrayList<>();
         capacityConfigRecordList.forEach(Element -> newElementList.add(getUpdatedCapacityElement(Element)));
