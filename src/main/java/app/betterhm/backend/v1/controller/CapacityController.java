@@ -1,5 +1,6 @@
 package app.betterhm.backend.v1.controller;
 
+import app.betterhm.backend.configuration.httpNotFoundException;
 import app.betterhm.backend.v1.models.capacity.CapacityApiElement;
 import app.betterhm.backend.v1.services.CapacityService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,10 @@ public class CapacityController {
 
     @GetMapping("/{id}")
     public CapacityApiElement getSingleCapacityElement(@PathVariable String id){
+        CapacityApiElement capacityApiElement = capacityService.getSingleCapacityElement(id);
+        if (capacityApiElement == null) {
+            throw new httpNotFoundException();
+        }
         return capacityService.getSingleCapacityElement(id);
     }
 }

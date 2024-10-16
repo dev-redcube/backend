@@ -1,5 +1,6 @@
 package app.betterhm.backend.v1.controller;
 
+import app.betterhm.backend.configuration.httpNotFoundException;
 import app.betterhm.backend.v1.models.CalendarElement;
 import app.betterhm.backend.v1.services.CalendarService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,10 @@ public class CalendarController {
      */
     @GetMapping("/{id}")
     public CalendarElement getCalendar(@PathVariable String id) {
-        return calendarServiceObject.getSingleCalendarElements(id);
+        CalendarElement singleCalendarElements = calendarServiceObject.getSingleCalendarElements(id);
+        if (singleCalendarElements == null) {
+            throw new httpNotFoundException();
+        }
+        return singleCalendarElements;
     }
 }

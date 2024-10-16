@@ -55,9 +55,9 @@ public class CapacityService {
     }
 
     /**
-     * Method to update the Capacity Elements every 5 Minutes (from 3 to 59 minutes)
+     * Method to update the Capacity Elements every 5 Minutes (1 second after to garantee that the data from LRZ is updated)
      */
-    @Scheduled(cron = "0 3-59/5 * ? * *")
+    @Scheduled(cron = "1 */5 * ? * *")
     public void updateCapacity(){
         List<CapacityApiElement> newElementList = new ArrayList<>();
         capacityConfigRecordList.forEach(Element -> newElementList.add(getUpdatedCapacityElement(Element)));
@@ -73,20 +73,20 @@ public class CapacityService {
         String json = getDataFromLRZ(capacityConfigRecord);
         final ArrayList<LrzJsonAccesspoint> allApList = getJsonData(json);
         ArrayList<LrzJsonAccesspoint> filteredApList = filterAccessPoints(capacityConfigRecord, allApList);
-        //adds all the clients of the filtered APs to the client count & set timestamp
+        //adds all the current of the filtered APs to the client count & set timestamp
         if (!filteredApList.isEmpty()) {
-            clients = filteredApList.stream().mapToInt(element -> element.getConnectedDevices(1)).sum();
-            timestamp = filteredApList.getFirst().getDatapointTimestamp(1);
+            clients = filteredApList.stream().mapToInt(element -> element.getConnectedDevices(0)).sum();
+            timestamp = filteredApList.getFirst().getDatapointTimestamp(0);
         }else{
             timestamp = Instant.now();
             clients = 0;
         }
 
 
-        double capacityLevelInPercent = ((double) (clients * 100 / capacityConfigRecord.static_max_clients())/100); // calculates the capacity level in percent with 2 decimal places
+        float capacityLevelInPercent = ((float) clients * 100 / capacityConfigRecord.static_max_clients()); // calculates the capacity level in percent with 2 decimal places
         //filter out everything over "100%"
-        if(capacityLevelInPercent > 1.0){
-            capacityLevelInPercent = 1.0;
+        if(capacityLevelInPercent > 100.0){
+            capacityLevelInPercent = 100.0F;
         }
 
         return new CapacityApiElement(capacityConfigRecord.enum_name(), clients, capacityLevelInPercent, timestamp.toString());
