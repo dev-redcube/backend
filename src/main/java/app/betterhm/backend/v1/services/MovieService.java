@@ -7,6 +7,7 @@ import app.betterhm.backend.v1.models.movies.Movie;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.trbl.blurhash.BlurHash;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,10 @@ public class MovieService {
         this.movieCache = movieCache;
     }
 
+    /// Run after boot and every day at 06:00
     @Scheduled(cron = "0 0 6 * * *")
-    public void updateMovies() {
+    @PostConstruct
+    private void updateMovies() {
         var rawJson = apiClient.fetchMovies();
         try {
             List<ExternalMovieModel> mapped = objectMapper
@@ -60,6 +63,7 @@ public class MovieService {
         }
     }
 
+    /// calculate blurhash of the image
     private String getCoverBlurhash(Movie m) throws IOException {
         logger.info("Fetching Cover for Movie {}", m.title());
         BufferedImage img = ImageIO.read(new URL(m.coverUrl()).openStream());
