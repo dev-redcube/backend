@@ -1,7 +1,7 @@
 **BetterHM-App-Backend**
 =========================
 
-Dieser Backend-Dienst dient als Schnittstelle für die Inoffizielle BetterHM-App, um eine Reihe von Informationen und Funktionen bereitzustellen.
+Dieser Backend-Dienst dient als Schnittstelle für die inoffizielle BetterHM-App, um eine Reihe von Informationen und Funktionen bereitzustellen.
 
 **Endpunkte**
 ---------------
@@ -75,11 +75,17 @@ Dieser Backend-Dienst dient als Schnittstelle für die Inoffizielle BetterHM-App
 }
 ```
 
+### /v1/movies
+
+* **Beschreibung**: Gibt das aktuelle Kinoprogramm zurück
+* **HTTP-Methode**: GET
+* **Antwortformat**: JSON
+
 **Technische Details**
 -------------------------
 
 * Die Endpunkte werden über HTTP bereitgestellt.
-* Die Antwortformat sind JSON-Objekte.
+* Die Antwortformate sind JSON-Objekte.
 * Die Anwendung wird durch eine Konfigurationsdatei config.yml im Ordner /resources/yaml konfiguriert
 
 **Fehlerbehandlung**
