@@ -113,11 +113,11 @@ public class CapacityService {
             String[] splitUrl = lrzApiUrl.split("\\{\\{subdistrict_id}}", 2); //builds the URL with the sub-district id
             apiUrl = URI.create(splitUrl[0] + capacityConfigRecord.lrz_subdistrict_id() + splitUrl[1]).toURL();
         } catch (PatternSyntaxException e) {
-            logger.error("Could not Split LRZ Api Url Provided by the config", e);
-            throw new PatternSyntaxException("Could not Split LRZ Api Url Provided by the config", lrzApiUrl, -1);
+            logger.error("Could not Split LRZ Api url Provided by the config", e);
+            throw new PatternSyntaxException("Could not Split LRZ Api url Provided by the config", lrzApiUrl, -1);
         }catch (MalformedURLException e) {
-            logger.error("Could not Generate a valid Url for the LRZ Wifi Api", e);
-            throw new IllegalStateException("Could not Generate a valid Url for the LRZ Wifi Api", e);
+            logger.error("Could not Generate a valid url for the LRZ Wifi Api", e);
+            throw new IllegalStateException("Could not Generate a valid url for the LRZ Wifi Api", e);
         }
         //gets the data from the LRZ API
         try (InputStream in = apiUrl.openStream()) {
