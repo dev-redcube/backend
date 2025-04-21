@@ -5,4 +5,11 @@ import java.util.Optional;
 /**
  * This Record is a Template for the calendar element
  */
-public record CalendarElement(String ID, String Name, String Url, Optional<String> SourceURL, Optional<String> Description) {}
+public record CalendarElement(
+        String id,
+        String name,
+        String url,
+        Optional<String> sourceURL,
+        Optional<String> description
+) {
+}

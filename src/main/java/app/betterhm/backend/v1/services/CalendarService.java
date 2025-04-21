@@ -23,13 +23,13 @@ public class CalendarService {
     }
 
     /**
-     * Returns the calendar element with the given ID
+     * Returns the calendar element with the given id
      * @param calendarElementID UUID of the calendar element
      * @return CalendarElement
      */
     public CalendarElement getSingleCalendarElements(String calendarElementID) {
         return calendarElementsList.stream()
-                .filter(Element -> Element.ID().equals(calendarElementID))
+                .filter(element -> element.id().equals(calendarElementID))
                 .findFirst()
                 .orElse(null);
     }

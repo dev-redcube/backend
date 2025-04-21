@@ -1,13 +1,13 @@
 
 Calendars:
-  - ID: "1776ed34-fccf-4845-aa1b-5c6821649804"
-    Name: "HM Fristen & Termine"
-    Url: "https://api.betterhm.app/static/calendar/1776ed34-fccf-4845-aa1b-5c6821649804.ics"
-    SourceURL: "https://calendar.google.com/calendar/ical/qp1nk83jvkfm7a3m9goqhr5oo4%40group.calendar.google.com/public/basic.ics"
-  - ID: "870baf08-b182-4451-a1f5-657b8ef02852"
-    Name: "Gesetzliche Feiertage"
-    Url: "https://api.betterhm.app/static/calendar/870baf08-b182-4451-a1f5-657b8ef02852.ics"
-    SourceURL: "https://www.thunderbird.net/media/caldata/GermanHolidays.ics"
+  - id: "1776ed34-fccf-4845-aa1b-5c6821649804"
+    name: "HM Fristen & Termine"
+    url: "https://api.betterhm.app/static/calendar/1776ed34-fccf-4845-aa1b-5c6821649804.ics"
+    sourceURL: "https://calendar.proton.me/api/calendar/v1/url/973m76Afxr3ryM4NFjuZUVhmqMGh3SIpMX-1eSlwOL_bhqA38biXWzQPqaLfWLkVBOs9Sh7Q3E002rMctPnErw==/calendar.ics?CacheKey=R3FlWaFezXeobpnpHQapxw%3D%3D&PassphraseKey=956kJaPh_-UjxGYMfexjyo3oExfXMXdKKLL7W3vhd9I%3D"
+  - id: "870baf08-b182-4451-a1f5-657b8ef02852"
+    name: "Gesetzliche Feiertage"
+    url: "https://api.betterhm.app/static/calendar/870baf08-b182-4451-a1f5-657b8ef02852.ics"
+    sourceURL: "https://www.thunderbird.net/media/caldata/GermanHolidays.ics"
 CapacityElements:
   - enum_name: "STUCAFE_KARLSTR"
     lrz_subdistrict_id: "rf"

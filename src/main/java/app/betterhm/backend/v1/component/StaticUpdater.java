@@ -32,8 +32,8 @@ public class StaticUpdater {
     @PostConstruct
     @Scheduled(cron = "0 0 4 * * *")
     public void updateCalendar(){
-        yaml.Calendars().stream().filter(element -> element.SourceURL().isPresent()).forEach(element ->
-                downloadFile(element.SourceURL().get(), "resources/static/calendar/" + element.ID() + ".ics"));
+        yaml.Calendars().stream().filter(element -> element.sourceURL().isPresent()).forEach(element ->
+                downloadFile(element.sourceURL().get(), "resources/static/calendar/" + element.id() + ".ics"));
         logger.info("Calendar files updated");
     }
 
